@@ -6,11 +6,11 @@ using System.Web;
 
 namespace Vidly.Models
 {
-    public class Movie
+    public class Genre
     {
-        public int Id { get; set; }
         [Required]
         public string Name { get; set; }
-        public string MyProperty { get; set; }
+        [Required]
+        public int Id { get; set; }
     }
 }
