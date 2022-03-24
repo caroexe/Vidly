@@ -271,6 +271,10 @@
     <Compile Include="Migrations\202203241422283_UpdateNumberInStock.Designer.cs">
       <DependentUpon>202203241422283_UpdateNumberInStock.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202203241429147_ChangeMovieDetailsView.cs" />
+    <Compile Include="Migrations\202203241429147_ChangeMovieDetailsView.Designer.cs">
+      <DependentUpon>202203241429147_ChangeMovieDetailsView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -435,6 +439,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202203241422283_UpdateNumberInStock.resx">
       <DependentUpon>202203241422283_UpdateNumberInStock.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202203241429147_ChangeMovieDetailsView.resx">
+      <DependentUpon>202203241429147_ChangeMovieDetailsView.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
