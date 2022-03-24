@@ -243,6 +243,22 @@
     <Compile Include="Migrations\202203241336217_AddDbGenreContext.Designer.cs">
       <DependentUpon>202203241336217_AddDbGenreContext.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202203241341119_PopulateMovies.cs" />
+    <Compile Include="Migrations\202203241341119_PopulateMovies.Designer.cs">
+      <DependentUpon>202203241341119_PopulateMovies.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202203241351297_EditMovie.cs" />
+    <Compile Include="Migrations\202203241351297_EditMovie.Designer.cs">
+      <DependentUpon>202203241351297_EditMovie.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202203241359210_UpdateMovieTable.cs" />
+    <Compile Include="Migrations\202203241359210_UpdateMovieTable.Designer.cs">
+      <DependentUpon>202203241359210_UpdateMovieTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202203241405112_AddGenreIdToMovie.cs" />
+    <Compile Include="Migrations\202203241405112_AddGenreIdToMovie.Designer.cs">
+      <DependentUpon>202203241405112_AddGenreIdToMovie.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -386,6 +402,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202203241336217_AddDbGenreContext.resx">
       <DependentUpon>202203241336217_AddDbGenreContext.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202203241341119_PopulateMovies.resx">
+      <DependentUpon>202203241341119_PopulateMovies.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202203241351297_EditMovie.resx">
+      <DependentUpon>202203241351297_EditMovie.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202203241359210_UpdateMovieTable.resx">
+      <DependentUpon>202203241359210_UpdateMovieTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202203241405112_AddGenreIdToMovie.resx">
+      <DependentUpon>202203241405112_AddGenreIdToMovie.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
