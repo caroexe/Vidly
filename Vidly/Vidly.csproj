@@ -259,6 +259,18 @@
     <Compile Include="Migrations\202203241405112_AddGenreIdToMovie.Designer.cs">
       <DependentUpon>202203241405112_AddGenreIdToMovie.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202203241416091_AddNumberInStockIntoMovie.cs" />
+    <Compile Include="Migrations\202203241416091_AddNumberInStockIntoMovie.Designer.cs">
+      <DependentUpon>202203241416091_AddNumberInStockIntoMovie.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202203241421164_AddNumberInStockIntoMovieSecondTry.cs" />
+    <Compile Include="Migrations\202203241421164_AddNumberInStockIntoMovieSecondTry.Designer.cs">
+      <DependentUpon>202203241421164_AddNumberInStockIntoMovieSecondTry.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202203241422283_UpdateNumberInStock.cs" />
+    <Compile Include="Migrations\202203241422283_UpdateNumberInStock.Designer.cs">
+      <DependentUpon>202203241422283_UpdateNumberInStock.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -414,6 +426,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202203241405112_AddGenreIdToMovie.resx">
       <DependentUpon>202203241405112_AddGenreIdToMovie.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202203241416091_AddNumberInStockIntoMovie.resx">
+      <DependentUpon>202203241416091_AddNumberInStockIntoMovie.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202203241421164_AddNumberInStockIntoMovieSecondTry.resx">
+      <DependentUpon>202203241421164_AddNumberInStockIntoMovieSecondTry.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202203241422283_UpdateNumberInStock.resx">
+      <DependentUpon>202203241422283_UpdateNumberInStock.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
