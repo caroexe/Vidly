@@ -223,6 +223,26 @@
     <Compile Include="Migrations\202203241310152_AddGenreModel.Designer.cs">
       <DependentUpon>202203241310152_AddGenreModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202203241321011_NewChangesOnMovieAndMoviesController.cs" />
+    <Compile Include="Migrations\202203241321011_NewChangesOnMovieAndMoviesController.Designer.cs">
+      <DependentUpon>202203241321011_NewChangesOnMovieAndMoviesController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202203241322141_PopulateGenre.cs" />
+    <Compile Include="Migrations\202203241322141_PopulateGenre.Designer.cs">
+      <DependentUpon>202203241322141_PopulateGenre.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202203241325493_AddGenreData.cs" />
+    <Compile Include="Migrations\202203241325493_AddGenreData.Designer.cs">
+      <DependentUpon>202203241325493_AddGenreData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202203241329559_AddGenreDataSecondTry.cs" />
+    <Compile Include="Migrations\202203241329559_AddGenreDataSecondTry.Designer.cs">
+      <DependentUpon>202203241329559_AddGenreDataSecondTry.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202203241336217_AddDbGenreContext.cs" />
+    <Compile Include="Migrations\202203241336217_AddDbGenreContext.Designer.cs">
+      <DependentUpon>202203241336217_AddDbGenreContext.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -351,6 +371,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202203241310152_AddGenreModel.resx">
       <DependentUpon>202203241310152_AddGenreModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202203241321011_NewChangesOnMovieAndMoviesController.resx">
+      <DependentUpon>202203241321011_NewChangesOnMovieAndMoviesController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202203241322141_PopulateGenre.resx">
+      <DependentUpon>202203241322141_PopulateGenre.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202203241325493_AddGenreData.resx">
+      <DependentUpon>202203241325493_AddGenreData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202203241329559_AddGenreDataSecondTry.resx">
+      <DependentUpon>202203241329559_AddGenreDataSecondTry.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202203241336217_AddDbGenreContext.resx">
+      <DependentUpon>202203241336217_AddDbGenreContext.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

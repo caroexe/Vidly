@@ -11,6 +11,6 @@ namespace Vidly.Models
         [Required]
         public string Name { get; set; }
         [Required]
-        public int Id { get; set; }
+        public byte Id { get; set; }
     }
 }
