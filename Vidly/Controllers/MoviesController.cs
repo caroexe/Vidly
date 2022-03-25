@@ -51,6 +51,7 @@ namespace Vidly.Controllers
                 Genres = genre
             };
 
+
             return View("MovieForm" , viewModel);
         }
 
@@ -59,12 +60,13 @@ namespace Vidly.Controllers
         {
             if (movie.Id == 0)
             {
+                var currentDateTime = DateTime.Now;
                 _context.Movies.Add(movie);
+                movie.DateAdded = currentDateTime;
             }
             else
             {
                 var movieInDb = _context.Movies.Single(c => c.Id == movie.Id);
-
                 movieInDb.Name = movie.Name;
                 movieInDb.GenreId = movie.GenreId;
                 movieInDb.ReleaseDate = movie.ReleaseDate;
