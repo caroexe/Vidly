@@ -18,7 +18,7 @@ namespace Vidly
     {
         public Task SendAsync(IdentityMessage message)
         {
-            // Hier den E-Mail-Dienst einfügen, um eine E-Mail-Nachricht zu senden.
+            // Plug in your email service here to send an email.
             return Task.FromResult(0);
         }
     }
@@ -27,12 +27,12 @@ namespace Vidly
     {
         public Task SendAsync(IdentityMessage message)
         {
-            // Hier den SMS-Dienst einfügen, um eine Textnachricht zu senden.
+            // Plug in your SMS service here to send a text message.
             return Task.FromResult(0);
         }
     }
 
-    // Konfigurieren des in dieser Anwendung verwendeten Anwendungsbenutzer-Managers. UserManager wird in ASP.NET Identity definiert und von der Anwendung verwendet.
+    // Configure the application user manager used in this application. UserManager is defined in ASP.NET Identity and is used by the application.
     public class ApplicationUserManager : UserManager<ApplicationUser>
     {
         public ApplicationUserManager(IUserStore<ApplicationUser> store)
@@ -43,14 +43,14 @@ namespace Vidly
         public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context) 
         {
             var manager = new ApplicationUserManager(new UserStore<ApplicationUser>(context.Get<ApplicationDbContext>()));
-            // Konfigurieren der Überprüfungslogik für Benutzernamen.
+            // Configure validation logic for usernames
             manager.UserValidator = new UserValidator<ApplicationUser>(manager)
             {
                 AllowOnlyAlphanumericUserNames = false,
                 RequireUniqueEmail = true
             };
 
-            // Konfigurieren der Überprüfungslogik für Kennwörter.
+            // Configure validation logic for passwords
             manager.PasswordValidator = new PasswordValidator
             {
                 RequiredLength = 6,
@@ -60,21 +60,21 @@ namespace Vidly
                 RequireUppercase = true,
             };
 
-            // Standardeinstellungen für Benutzersperren konfigurieren
+            // Configure user lockout defaults
             manager.UserLockoutEnabledByDefault = true;
             manager.DefaultAccountLockoutTimeSpan = TimeSpan.FromMinutes(5);
             manager.MaxFailedAccessAttemptsBeforeLockout = 5;
 
-            // Registrieren von Anbietern für zweistufige Authentifizierung. Diese Anwendung verwendet telefonische und E-Mail-Nachrichten zum Empfangen eines Codes zum Überprüfen des Benutzers.
-            // Sie können Ihren eigenen Anbieter erstellen und hier einfügen.
-            manager.RegisterTwoFactorProvider("Telefoncode", new PhoneNumberTokenProvider<ApplicationUser>
+            // Register two factor authentication providers. This application uses Phone and Emails as a step of receiving a code for verifying the user
+            // You can write your own provider and plug it in here.
+            manager.RegisterTwoFactorProvider("Phone Code", new PhoneNumberTokenProvider<ApplicationUser>
             {
-                MessageFormat = "Ihr Sicherheitscode lautet {0}"
+                MessageFormat = "Your security code is {0}"
             });
-            manager.RegisterTwoFactorProvider("E-Mail-Code", new EmailTokenProvider<ApplicationUser>
+            manager.RegisterTwoFactorProvider("Email Code", new EmailTokenProvider<ApplicationUser>
             {
-                Subject = "Sicherheitscode",
-                BodyFormat = "Ihr Sicherheitscode lautet {0}"
+                Subject = "Security Code",
+                BodyFormat = "Your security code is {0}"
             });
             manager.EmailService = new EmailService();
             manager.SmsService = new SmsService();
@@ -88,7 +88,7 @@ namespace Vidly
         }
     }
 
-    // Anwendungsanmelde-Manager konfigurieren, der in dieser Anwendung verwendet wird.
+    // Configure the application sign-in manager which is used in this application.
     public class ApplicationSignInManager : SignInManager<ApplicationUser, string>
     {
         public ApplicationSignInManager(ApplicationUserManager userManager, IAuthenticationManager authenticationManager)

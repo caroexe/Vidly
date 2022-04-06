@@ -55,12 +55,12 @@ namespace Vidly.Controllers
         public async Task<ActionResult> Index(ManageMessageId? message)
         {
             ViewBag.StatusMessage =
-                message == ManageMessageId.ChangePasswordSuccess ? "Ihr Kennwort wurde geändert."
-                : message == ManageMessageId.SetPasswordSuccess ? "Ihr Kennwort wurde festgelegt."
-                : message == ManageMessageId.SetTwoFactorSuccess ? "Ihr Anbieter für zweistufige Authentifizierung wurde festgelegt."
-                : message == ManageMessageId.Error ? "Fehler"
-                : message == ManageMessageId.AddPhoneSuccess ? "Ihre Telefonnummer wurde hinzugefügt."
-                : message == ManageMessageId.RemovePhoneSuccess ? "Ihre Telefonnummer wurde entfernt."
+                message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
+                : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
+                : message == ManageMessageId.SetTwoFactorSuccess ? "Your two-factor authentication provider has been set."
+                : message == ManageMessageId.Error ? "An error has occurred."
+                : message == ManageMessageId.AddPhoneSuccess ? "Your phone number was added."
+                : message == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed."
                 : "";
 
             var userId = User.Identity.GetUserId();
@@ -116,14 +116,14 @@ namespace Vidly.Controllers
             {
                 return View(model);
             }
-            // Token generieren und senden
+            // Generate the token and send it
             var code = await UserManager.GenerateChangePhoneNumberTokenAsync(User.Identity.GetUserId(), model.Number);
             if (UserManager.SmsService != null)
             {
                 var message = new IdentityMessage
                 {
                     Destination = model.Number,
-                    Body = "Ihr Sicherheitscode lautet " + code
+                    Body = "Your security code is: " + code
                 };
                 await UserManager.SmsService.SendAsync(message);
             }
@@ -165,7 +165,7 @@ namespace Vidly.Controllers
         public async Task<ActionResult> VerifyPhoneNumber(string phoneNumber)
         {
             var code = await UserManager.GenerateChangePhoneNumberTokenAsync(User.Identity.GetUserId(), phoneNumber);
-            // Eine SMS über den SMS-Anbieter senden, um die Telefonnummer zu überprüfen.
+            // Send an SMS through the SMS provider to verify the phone number
             return phoneNumber == null ? View("Error") : View(new VerifyPhoneNumberViewModel { PhoneNumber = phoneNumber });
         }
 
@@ -189,15 +189,13 @@ namespace Vidly.Controllers
                 }
                 return RedirectToAction("Index", new { Message = ManageMessageId.AddPhoneSuccess });
             }
-            // Wurde dieser Punkt erreicht, ist ein Fehler aufgetreten. Formular erneut anzeigen.
-            ModelState.AddModelError("", "Fehler beim Überprüfen des Telefons.");
+            // If we got this far, something failed, redisplay form
+            ModelState.AddModelError("", "Failed to verify phone");
             return View(model);
         }
 
         //
-        // POST: /Manage/RemovePhoneNumber
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        // GET: /Manage/RemovePhoneNumber
         public async Task<ActionResult> RemovePhoneNumber()
         {
             var result = await UserManager.SetPhoneNumberAsync(User.Identity.GetUserId(), null);
@@ -272,7 +270,7 @@ namespace Vidly.Controllers
                 AddErrors(result);
             }
 
-            // Wurde dieser Punkt erreicht, ist ein Fehler aufgetreten. Formular erneut anzeigen.
+            // If we got this far, something failed, redisplay form
             return View(model);
         }
 
@@ -281,8 +279,8 @@ namespace Vidly.Controllers
         public async Task<ActionResult> ManageLogins(ManageMessageId? message)
         {
             ViewBag.StatusMessage =
-                message == ManageMessageId.RemoveLoginSuccess ? "Die externe Anmeldung wurde entfernt."
-                : message == ManageMessageId.Error ? "Fehler"
+                message == ManageMessageId.RemoveLoginSuccess ? "The external login was removed."
+                : message == ManageMessageId.Error ? "An error has occurred."
                 : "";
             var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
             if (user == null)
@@ -305,7 +303,7 @@ namespace Vidly.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult LinkLogin(string provider)
         {
-            // Umleitung an den externen Anmeldeanbieter anfordern, um eine Anmeldung für den aktuellen Benutzer zu verknüpfen.
+            // Request a redirect to the external login provider to link a login for the current user
             return new AccountController.ChallengeResult(provider, Url.Action("LinkLoginCallback", "Manage"), User.Identity.GetUserId());
         }
 
@@ -333,8 +331,8 @@ namespace Vidly.Controllers
             base.Dispose(disposing);
         }
 
-#region Hilfsprogramme
-        // Wird für XSRF-Schutz beim Hinzufügen externer Anmeldungen verwendet.
+#region Helpers
+        // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
 
         private IAuthenticationManager AuthenticationManager

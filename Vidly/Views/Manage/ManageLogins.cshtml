@@ -1,7 +1,7 @@
 ﻿@model Vidly.Models.ManageLoginsViewModel
 @using Microsoft.Owin.Security
 @{
-    ViewBag.Title = "Externe Anmeldungen verwalten";
+    ViewBag.Title = "Manage your external logins";
 }
 
 <h2>@ViewBag.Title.</h2>
@@ -12,8 +12,8 @@
     if (loginProviders.Count() == 0) {
         <div>
             <p>
-                Es sind keine externen Authentifizierungsdienste konfiguriert. In <a href="https://go.microsoft.com/fwlink/?LinkId=313242">diesem Artikel</a>
-                finden Sie weitere Informationen zum Einrichten dieser ASP.NET-Anwendung für die Unterstützung der Anmeldung über externe Dienste.
+                There are no external authentication services configured. See <a href="http://go.microsoft.com/fwlink/?LinkId=313242">this article</a>
+                for details on setting up this ASP.NET application to support logging in via external services.
             </p>
         </div>
     }
@@ -21,7 +21,7 @@
     {
         if (Model.CurrentLogins.Count > 0)
         {
-            <h4>Registrierte Anmeldungen</h4>
+            <h4>Registered Logins</h4>
             <table class="table">
                 <tbody>
                     @foreach (var account in Model.CurrentLogins)
@@ -37,7 +37,7 @@
                                         <div>
                                             @Html.Hidden("loginProvider", account.LoginProvider)
                                             @Html.Hidden("providerKey", account.ProviderKey)
-                                            <input type="submit" class="btn btn-default" value="Entfernen" title="Diese @account.LoginProvider-Anmeldung aus Ihrem Konto entfernen" />
+                                            <input type="submit" class="btn btn-default" value="Remove" title="Remove this @account.LoginProvider login from your account" />
                                         </div>
                                     }
                                 }
@@ -60,7 +60,7 @@
                 <p>
                     @foreach (AuthenticationDescription p in Model.OtherLogins)
                     {
-                        <button type="submit" class="btn btn-default" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="Mit Ihrem @p.Caption-Konto anmelden">@p.AuthenticationType</button>
+                        <button type="submit" class="btn btn-default" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="Log in using your @p.Caption account">@p.AuthenticationType</button>
                     }
                 </p>
                 </div>

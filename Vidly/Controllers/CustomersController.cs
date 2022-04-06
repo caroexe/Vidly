@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using Vidly.Models;
 using Vidly.ViewModels;
@@ -12,7 +9,7 @@ namespace Vidly.Controllers
     public class CustomersController : Controller
     {
         private ApplicationDbContext _context;
-        
+
         public CustomersController()
         {
             _context = new ApplicationDbContext();
@@ -25,13 +22,14 @@ namespace Vidly.Controllers
 
         public ActionResult New()
         {
-            var membershipTpyes = _context.MembershipTypes.ToList();
+            var membershipTypes = _context.MembershipTypes.ToList();
             var viewModel = new CustomerFormViewModel
             {
                 Customer = new Customer(),
-                MembershipTypes = membershipTpyes
+                MembershipTypes = membershipTypes
             };
-            return View("CustomerForm",viewModel);
+
+            return View("CustomerForm", viewModel);
         }
 
         [HttpPost]
@@ -40,11 +38,12 @@ namespace Vidly.Controllers
         {
             if (!ModelState.IsValid)
             {
-                var viewModel = new CustomerFormViewModel()
+                var viewModel = new CustomerFormViewModel
                 {
                     Customer = customer,
                     MembershipTypes = _context.MembershipTypes.ToList()
                 };
+
                 return View("CustomerForm", viewModel);
             }
 
@@ -54,22 +53,20 @@ namespace Vidly.Controllers
             {
                 var customerInDb = _context.Customers.Single(c => c.Id == customer.Id);
                 customerInDb.Name = customer.Name;
-                customerInDb.BirthDate = customer.BirthDate;
+                customerInDb.Birthdate = customer.Birthdate;
                 customerInDb.MembershipTypeId = customer.MembershipTypeId;
                 customerInDb.IsSubscribedToNewsletter = customer.IsSubscribedToNewsletter;
             }
+
             _context.SaveChanges();
 
             return RedirectToAction("Index", "Customers");
         }
 
-        // GET: Customers/
         public ViewResult Index()
         {
             return View();
         }
-
-        // GET: Customers/Details
 
         public ActionResult Details(int id)
         {
@@ -84,6 +81,7 @@ namespace Vidly.Controllers
         public ActionResult Edit(int id)
         {
             var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
+
             if (customer == null)
                 return HttpNotFound();
 
