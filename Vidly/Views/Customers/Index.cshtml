@@ -10,10 +10,8 @@
     will remain unchanged.
 *@
 
-@{
-    ViewBag.Title = "Customers";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
+@{ ViewBag.Title = "Customers";
+    Layout = "~/Views/Shared/_Layout.cshtml"; }
 
 <h2>Customers</h2>
 
@@ -40,7 +38,7 @@
                 columns: [
                     {
                         data: "name",
-                        render: function(data, type, customer) {
+                        render: function (data, type, customer) {
                             return "<a href='/customers/edit/" + customer.id + "'>" + customer.name + "</a>";
                         }
                     },
@@ -49,7 +47,7 @@
                     },
                     {
                         data: "id",
-                        render: function(data) {
+                        render: function (data) {
                             return "<button class='btn-link js-delete' data-customer-id=" + data + ">Delete</button>";
                         }
                     }
